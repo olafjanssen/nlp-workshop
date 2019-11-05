@@ -1,2 +1,2 @@
-# nlp-workshop
-NLP introduction for ADS minor
+# NLP Introduction Workshop
+Powered by Reveal.js

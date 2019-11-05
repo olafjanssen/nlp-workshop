@@ -1,0 +1,403 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>NLP Introduction Overview</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/serif-nlp.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown>
+					<script type="text/template">
+						# NLP Workshop
+						## Natural Language Processing introduction/overview
+
+						[olaf.janssen@fontys.nl](olaf.janssen@fontys.nl)
+
+						[https://olafjanssen.github.io/nlp-workshop/](https://olafjanssen.github.io/nlp-workshop/)
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						**Natural Language Processing** is the challenging task of:
+
+						*analyzing*, *understanding*, and *generating* natural languages,
+
+						i.e. languages that are naturally spoken or written by humans.
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Why is NLP challenging?
+						(compared to programming languages)
+
+						- text is ambiguous
+						- most utterances are not instructions or facts
+						- even humans are crap at NLP
+						- often depends on a life-time of learned common knowledge for context
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Examples
+
+						- machine translators
+						- sentiment analysers
+						- text summarizers
+						- entity extraction (names, locations, events, ...)
+						- chatbots
+						- image search/captioning
+						- text classification (spam, fake news, pro or con)
+						- speech recognition
+						- search engines
+
+						Check out the list at [sebastianruder/NLP-progress](https://github.com/sebastianruder/NLP-progress).
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Example APIs and resources
+
+						* [NLP in Action](https://www.manning.com/books/natural-language-processing-in-action) Online book with great examples
+						* [NLP-progress](https://github.com/sebastianruder/NLP-progress)
+						* [Next gen NLP-models](https://medium.com/huggingface/the-best-and-most-current-of-modern-natural-language-processing-5055f409a1d1)
+
+						* [IBM APIs](https://developer.ibm.com/exchanges/models/)
+						* [IBM Watson personality analyser](http://www.watsonpersonality.com), [demo on text](https://personality-insights-demo.ng.bluemix.net)
+						* [Text generator](https://talktotransformer.com) or summarizer ([autotldr](https://www.reddit.com/r/autotldr/comments/31b9fm/faq_autotldr_bot/))
+						* [Trump tweetbot start semester](https://twitter.com/search?q=dontrump_lstm)
+
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## NLP Pipeline
+
+						1. **tokenize**: break up your text data into chunks
+						2. turn text into **numerical data**
+						3. condense the data so it captures **meaning**
+						4. **search** for a response using the meaning
+						5. use encoded response to **generate** new text
+
+						(Not all applications implement all steps.)
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 1. Breaking up your text
+
+						Use: [spaCy](https://spacy.io) or [NLTK](https://www.nltk.org)
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 1. Breaking up your text
+
+						**corpus**: total collection of **documents** of text you use
+						* e-mail collection, news articles, web pages, chat conversations
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 1. Breaking up your text
+
+						**segments**: cut document into meaningful units (sentences)
+						* 2019 is a way to start a sentence, i.e. that stinks?!
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 1. Breaking up your text
+
+						* **tokens**: smallest elements you work with (usually words)
+							+ `"I am red." → ["I", "am", "red"]`
+							+ `"don’t" → [“do”, “n’t”] or [“don’t”] or [“do”, “not”]`
+						* consider **n-grams**
+							+ `["ice cream"]` (bi-gram)
+							+ `["trick or treat"]` (tri-gram)
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 1. Breaking up your text
+
+						build a **lexicon** (your 'dictionary')
+						* contains tokens + n-grams
+
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 1. Breaking up your text
+
+						additional cleaning of your lexicon:
+
+						* **normalization**
+							+ `["trump", "Trump", "TRUMP"] → "Trump"`
+						* **stemming** (pre-, post-fixes)
+							+ `["clothes", "cloth", "clothing"] → "cloth"`
+						* **lemmatization** (combine similar meaning)
+							+ `["do", "did", "done"] → ["do"]`
+							+ `["lots", "plenty", "heaps", "tons", "numerous"] → ["many"]`
+
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 1. Breaking up your text
+
+						One last thing you may encounter:
+
+						"You **(SUBJECT/PRONOUN)** eat **(VERB)** large **(OBJECT/ADJECTIVE)** apples **(OBJECT/NOUN)**."
+
+						Part of Speech tagging, *don't try it at home*.
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 1. Breaking up your text
+
+						Some tutorials:
+						- [Tutorial using spaCy](https://stackabuse.com/python-for-nlp-tokenization-stemming-and-lemmatization-with-spacy-library/)
+						- [Tutorial using NLTK](https://data-flair.training/blogs/nltk-python-tutorial/)
+
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 2. Turn text into **numerical data**
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 2. Turn text into **numerical data**
+
+						We can use statistics and basic machine learning once we turn words into numbers.
+
+						The simplest is: **one-hot encoding**.
+
+						* Dog → [1, 0, 0, ....., 0]
+						* Cat → [0, 1, 0, ....., 0]
+						* Zorblax → [0, 0, 0, ....., 1]
+
+						**Cons:** huge (empty) matrices, contains little statistical information
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 2. Turn text into **numerical data**
+
+						**[Bag of Words (BOW)](https://pythonprogramminglanguage.com/bag-of-words/)**, or count dictionary
+
+						* “A duck is a bird” → [“duck”: 1, “is”: 1, “a”: 2, “bird”: 1]
+
+						**Pros:** summarizes an entire segment statistically, <br>classifier can be trained with a single long vector instead of sparse matrix
+
+						**Cons:** you lose word order
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 2. Turn text into **numerical data**
+
+						When comparing data for comparable content, normalize on sentence length.
+
+						* “A duck is a bird” → [“duck”: 0.2, “is”: 0.2, “a”: 0.4, “bird”: 0.2]
+
+						Or boost unique words with a **[TF-IDF](https://nlpforhackers.io/tf-idf/) (Term Frequency - Inverse Document Frequency)** vector.
+
+						**Pros:** summarizes an entire segment statistically compared to the rest of the corpus
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 2. Turn text into **numerical data**
+
+						Comparing data using distance metrics to find closest (statistical) matches:
+
+						* **Euclidian distance** (Pythagorean distance along all dimensions)
+						* **[cosine similarity](http://blog.christianperone.com/2013/09/machine-learning-cosine-similarity-for-vector-space-models-part-iii/)** angle between two vectors (aligned meaning)
+
+						Once you master this you can create: [search engines](https://medium.com/@deangelaneves/how-to-build-a-search-engine-from-scratch-in-python-part-1-96eb240f9ecb), all kinds of classifications such as sentiment/[spam](https://narengowda.github.io/logistic-regression-sms-spam-ham-classification-using-tfidf-vectorizer/)/sarcasm, or a [Q&A chat bot](https://medium.com/analytics-vidhya/building-a-simple-chatbot-in-python-using-nltk-7c8c8215ac6e) [with large corpus of questions with answers](http://www.wildml.com/2016/07/deep-learning-for-chatbots-2-retrieval-based-model-tensorflow/).
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 3. condense the data into **meaning**
+
+						* previous methods did not capture meaning
+						* worked with large vectors leading to the **curse of dimensionality**
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 3. condense the data into **meaning**
+
+						Reduce dimensionality or condensing meaning using **topic vectors**, we can now search using these topic vectors instead of TF-IDF. This is called **semantic search**.
+
+						* **[Latent Semantic Analysis (LSA)](http://mccormickml.com/2016/03/25/lsa-for-text-classification-tutorial/)** is equal to Principal Component Analysis (PCA) but for NLP.
+							- tries to spread topics as much as possible (good for spam detection)
+						* **[Latent Dirichlet Allocation (LDiA)](https://towardsdatascience.com/end-to-end-topic-modeling-in-python-latent-dirichlet-allocation-lda-35ce4ed6b3e0)**
+							- tries to obtain topics with strongest meaning resemblance (best for most use cases)
+
+						The library [gensim](https://radimrehurek.com/gensim/) can do this for you.
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 3. condense the data into **meaning**
+
+						**Word vectors** or **word embedding**: In effect, a word vector determines the meaning of a word by the type of words it is seen with in proximity.
+
+						Adding the word vectors of a sentence generates a vector that conveys the combined meaning of that sentence: math with words!
+
+						* “king” + “woman” - "man" → “queen”
+						* “Harry Potter” + “university” → “Hogwarts”
+
+						Three popular (pre-trained) implementations are Google **[Word2Vec](https://code.google.com/archive/p/word2vec/)**, Stanford's **[GloVe](https://nlp.stanford.edu/projects/glove/)**, and Facebook's **[fastText](https://fasttext.cc)**.
+
+						If you want to [train your own](https://towardsdatascience.com/a-beginners-guide-to-word-embedding-with-gensim-word2vec-model-5970fa56cc92), train a **skip-gram** or **Continuous Bag of Words (CBOW)** algorithm; for documents use [Doc2vec](https://medium.com/wisio/a-gentle-introduction-to-doc2vec-db3e8c0cce5e).
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 3. condense the data into **meaning**
+
+						By looking at words independently we have lost information about:
+						- the order of the words in a text,
+						- the proximity of words within a sentence
+						- the hidden layer of meaning within word combination
+
+						Hence:
+						**Deep Learning:** from meaning to contextual understanding and generation [using for instance Keras](https://nlpforhackers.io/keras-intro/)
+
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 3. condense the data into **meaning**
+
+						Use **[1D Convolutional Neural Networks](https://mlwhiz.com/blog/2019/03/09/deeplearning_architectures_text_classification/)** (CNN) to crack the more difficult NLP problems:
+						- input is a 2D list of word vectors (for each word in a segment) zero-padded to get a fixed size
+						- convolution is only 1D, size of the filter window determines considering length of n-grams
+						- all other tricks for CNNs apply (pooling, drop out, etc)
+
+						**Cons:** you can only classify text
+
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 5. **Generate** new text
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 5. **Generate** new text
+
+						For text prediction and generation we can use a **[Long Short-Term Memory (LSTM)](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)** layer.
+
+						With an LSTM you also capture the time dimension in the [memory cell](https://livebook.manning.com/book/natural-language-processing-in-action/chapter-9/31) of the LSTM layer: **thought vector**. We call this state the thought vector. It not only summarizes a text, it encodes the train-of-thought and context of a statement.
+
+						Applications:
+						- Produce new works of Shakespeare
+						- Co-authoring books ([Ronald Giphart's _Ik, Robot_](https://www.vice.com/nl/article/bj7ve4/we-spraken-ronald-giphart-over-hoe-hij-zijn-nieuwe-werk-samen-met-ai-maakte))
+						- [Reproducing Trump tweets](https://github.com/eleurent/make-lstm-great-again)
+
+						**Cons:** good at _how_ something is said, mimicking style. You have little control on the content.
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## 5. **Generate** new text
+
+						To really create novel text we use LSTMs in a **[Sequence-to-Sequence](https://livebook.manning.com/book/natural-language-processing-in-action/chapter-10/22)** model or **encoder-decoder architecture**.
+
+						Pipeline:
+						- First train an encoder LSTM and take out its thought vector
+						- Inject the thought vector in the decoder LSTM and predict whole new output.
+
+						Applications:
+						- [machine translations](https://blog.keras.io/a-ten-minute-introduction-to-sequence-to-sequence-learning-in-keras.html)
+						- chatbot conversations, Q&A bots
+						- document summarization
+
+						**Cons:** you need a huge amount of data to produce correct grammar
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## X. From text to knowledge
+
+						**Entity** and relation extraction:
+						- "Lecturers works at Fontys", "Olaf is a lecturer"
+							- 'Olaf' → name person, 'Fontys' → name school, 'lecturer' → occupation
+							- ['Olaf', 'is-a', 'lecturer']
+							- ['lecturer', 'works-for', 'Fontys']
+
+						The resulting **knowledge graph** can be [queried](https://quepy.readthedocs.io/en/latest/index.html):
+							- "List work-for Fontys"
+							- "What is Olaf?"
+							- "Olaf works-for Fontys?"
+
+						**Cons:** Knowledge graphs are slowly crawling out of a depressing winter, so examples are often stale
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## X. The holy grail of NLP
+
+						Independent algorithms can statistically classify, summarize meaning and find content related in meaning, predict and generate new text.
+
+						**But** while it appears to understand text, it does not understand it's own output.
+
+						To create a high-quality NLP bot, we need to combine all of the methods above and feed the output back into the NLP algorithms, for instance:
+						- spell/grammar check its own output
+						- do sentiment analysis of its own output and choose a proper tone of voice
+						- reject answers that are in meaning too far away from the user's input
+						- ...
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						# Your turn!
+					</script>
+				</section>
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>
