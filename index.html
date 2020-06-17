@@ -15,6 +15,36 @@
 
 </head>
 <body>
-Hello world!
+
+<div class="reveal">
+    <div class="slides">
+        <section data-markdown>
+            <script type="text/template">
+                # NLP Workshop
+                ## Natural Language Processing introduction/overview
+
+                [olaf.janssen@fontys.nl](olaf.janssen@fontys.nl)
+
+                [https://olafjanssen.github.io/nlp-workshop/](https://olafjanssen.github.io/nlp-workshop/)
+            </script>
+        </section>
+    </div>
+</div>
+
+<script src="js/reveal.js"></script>
+
+<script>
+    // More info about config & dependencies:
+    // - https://github.com/hakimel/reveal.js#configuration
+    // - https://github.com/hakimel/reveal.js#dependencies
+    Reveal.initialize({
+        dependencies: [
+            { src: 'plugin/markdown/marked.js' },
+            { src: 'plugin/markdown/markdown.js' },
+            { src: 'plugin/notes/notes.js', async: true },
+            { src: 'plugin/highlight/highlight.js', async: true }
+        ]
+    });
+</script>
 </body>
 </html>
