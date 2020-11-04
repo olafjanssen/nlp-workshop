@@ -178,7 +178,7 @@
 					<script type="text/template">
 						## 1. Breaking up your text
 
-						[Demo Sandbox](https://colab.research.google.com/drive/1z3vzQGts7yAAX9tngMRU5nJbdEVJVg51#scrollTo=zZjZ_5l0OTAS&forceEdit=true&sandboxMode=true)
+						<!-- [Demo Sandbox](https://colab.research.google.com/drive/1z3vzQGts7yAAX9tngMRU5nJbdEVJVg51#scrollTo=zZjZ_5l0OTAS&forceEdit=true&sandboxMode=true) -->
 						
 						Some tutorials:
 						- [Tutorial using spaCy](https://stackabuse.com/python-for-nlp-tokenization-stemming-and-lemmatization-with-spacy-library/)
@@ -243,7 +243,7 @@
 
 						Once you master this you can create: [search engines](https://medium.com/@deangelaneves/how-to-build-a-search-engine-from-scratch-in-python-part-1-96eb240f9ecb), all kinds of classifications such as sentiment/[spam](https://narengowda.github.io/logistic-regression-sms-spam-ham-classification-using-tfidf-vectorizer/)/sarcasm, or a [Q&A chat bot](https://medium.com/analytics-vidhya/building-a-simple-chatbot-in-python-using-nltk-7c8c8215ac6e) [with large corpus of questions with answers](http://www.wildml.com/2016/07/deep-learning-for-chatbots-2-retrieval-based-model-tensorflow/).
 
-						[Demo Sandbox](https://colab.research.google.com/drive/1z3vzQGts7yAAX9tngMRU5nJbdEVJVg51#scrollTo=zZjZ_5l0OTAS&forceEdit=true&sandboxMode=true)
+						<!-- [Demo Sandbox](https://colab.research.google.com/drive/1z3vzQGts7yAAX9tngMRU5nJbdEVJVg51#scrollTo=zZjZ_5l0OTAS&forceEdit=true&sandboxMode=true) -->
 
 					</script>
 				</section>
@@ -283,6 +283,8 @@
 						Three popular (pre-trained) implementations are Google **[Word2Vec](https://code.google.com/archive/p/word2vec/)**, Stanford's **[GloVe](https://nlp.stanford.edu/projects/glove/)**, and Facebook's **[fastText](https://fasttext.cc)**.
 
 						If you want to [train your own](https://towardsdatascience.com/a-beginners-guide-to-word-embedding-with-gensim-word2vec-model-5970fa56cc92), train a **skip-gram** or **Continuous Bag of Words (CBOW)** algorithm; for documents use [Doc2vec](https://medium.com/wisio/a-gentle-introduction-to-doc2vec-db3e8c0cce5e).
+
+						Play around with [GloVe](https://lamyiowce.github.io/word2viz/).
 					</script>
 				</section>
 				<section data-markdown>
@@ -310,85 +312,17 @@
 
 						**Cons:** you can only classify text
 
-						[Demo Sandbox](https://colab.research.google.com/drive/1z3vzQGts7yAAX9tngMRU5nJbdEVJVg51#scrollTo=zZjZ_5l0OTAS&forceEdit=true&sandboxMode=true)
+						<!-- [Demo Sandbox](https://colab.research.google.com/drive/1z3vzQGts7yAAX9tngMRU5nJbdEVJVg51#scrollTo=zZjZ_5l0OTAS&forceEdit=true&sandboxMode=true) -->
 
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## 5. **Generate** new text
-					</script>
-				</section>
-				<section data-markdown>
-					<script type="text/template">
-						## 5. **Generate** new text
+						## Next week
 
-						For text prediction and generation we can use a **[Long Short-Term Memory (LSTM)](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)** layer.
+						Going deep, the road towards GPT-3 ([openai](https://beta.openai.com/))
 
-						With an LSTM you also capture the time dimension in the [memory cell](https://livebook.manning.com/book/natural-language-processing-in-action/chapter-9/31) of the LSTM layer: **thought vector**. We call this state the thought vector. It not only summarizes a text, it encodes the train-of-thought and context of a statement.
-
-						Applications:
-						- Produce new works of Shakespeare
-						- Co-authoring books ([Ronald Giphart's _Ik, Robot_](https://www.vice.com/nl/article/bj7ve4/we-spraken-ronald-giphart-over-hoe-hij-zijn-nieuwe-werk-samen-met-ai-maakte))
-						- [Reproducing Trump tweets](https://github.com/eleurent/make-lstm-great-again)
-
-						**Cons:** good at _how_ something is said, mimicking style. You have little control on the content.
-					</script>
-				</section>
-				<section data-markdown>
-					<script type="text/template">
-						## 5. **Generate** new text
-
-						To really create novel text we use LSTMs in a **[Sequence-to-Sequence](https://livebook.manning.com/book/natural-language-processing-in-action/chapter-10/22)** model or **encoder-decoder architecture**.
-
-						Pipeline:
-						- First train an encoder LSTM and take out its thought vector
-						- Inject the thought vector in the decoder LSTM and predict whole new output.
-
-						Applications:
-						- [machine translations](https://blog.keras.io/a-ten-minute-introduction-to-sequence-to-sequence-learning-in-keras.html)
-						- chatbot conversations, Q&A bots
-						- document summarization
-
-						**Cons:** you need a huge amount of data to produce correct grammar
-					</script>
-				</section>
-				<section data-markdown>
-					<script type="text/template">
-						## X. From text to knowledge
-
-						**Entity** and relation extraction:
-						- "Lecturers works at Fontys", "Olaf is a lecturer"
-							- 'Olaf' → name person, 'Fontys' → name school, 'lecturer' → occupation
-							- ['Olaf', 'is-a', 'lecturer']
-							- ['lecturer', 'works-for', 'Fontys']
-
-						The resulting **knowledge graph** can be [queried](https://quepy.readthedocs.io/en/latest/index.html):
-							- "List work-for Fontys"
-							- "What is Olaf?"
-							- "Olaf works-for Fontys?"
-
-						**Cons:** Knowledge graphs are slowly crawling out of a depressing winter, so examples are often stale
-					</script>
-				</section>
-				<section data-markdown>
-					<script type="text/template">
-						## X. The holy grail of NLP
-
-						Independent algorithms can statistically classify, summarize meaning and find content related in meaning, predict and generate new text.
-
-						**But** while it appears to understand text, it does not understand it's own output.
-
-						To create a high-quality NLP bot, we need to combine all of the methods above and feed the output back into the NLP algorithms, for instance:
-						- spell/grammar check its own output
-						- do sentiment analysis of its own output and choose a proper tone of voice
-						- reject answers that are in meaning too far away from the user's input
-						- ...
-					</script>
-				</section>
-				<section data-markdown>
-					<script type="text/template">
-						# Your turn!
+						<iframe width="560" height="315" src="https://www.youtube.com/embed/8V20HkoiNtc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 					</script>
 				</section>
 			</div>
