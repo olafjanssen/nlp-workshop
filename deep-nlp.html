@@ -99,7 +99,7 @@
 					<script type="text/template">
 						## 5. **Generate** new text with Seq2Seq
 
-						To really create novel text we use LSTMs in a **[Sequence-to-Sequence](https://livebook.manning.com/book/natural-language-processing-in-action/chapter-10/22)** model or **encoder-decoder architecture**.
+						To really create novel text we use LSTMs in a **[Sequence-to-Sequence](https://livebook.manning.com/book/natural-language-processing-in-action/chapter-10/22)** model or **encoder-decoder architecture** ([more explanation](https://medium.com/analytics-vidhya/intuitive-understanding-of-seq2seq-model-attention-mechanism-in-deep-learning-1c1c24aace1e)).
 
 						Pipeline: First train an encoder LSTM and take out its thought vector. Inject the thought vector in the decoder LSTM and predict whole new output.
 
@@ -154,13 +154,13 @@
 
 						Independent algorithms can statistically classify, summarize meaning and find content related in meaning, predict and generate new text.
 
-						**But** while it appears to understand text, does it understand it's own output? Watch an [interview with GPT-3](https://www.youtube.com/watch?v=PqbB07n_uQ4&ab_channel=EricElliott).
+						**But** while it appears to understand text, does it understand its own output? Watch an [interview with GPT-3](https://www.youtube.com/watch?v=PqbB07n_uQ4&ab_channel=EricElliott).
 
 						To create a high-quality NLP bot, we need to combine all of the methods above and feed the output back into the NLP algorithms, for instance:
 						- spell/grammar check its own output
 						- do sentiment analysis of its own output and choose a proper tone of voice
 						- reject answers that are in meaning too far away from the user's input
-						- fact checking
+						- fact checking, world building
 						- ...
 					</script>
 				</section>
