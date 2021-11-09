@@ -31,6 +31,9 @@
 
 						## Part 1: NLP Basics
 
+						But first:
+						[AI Dungeon Game](https://play.aidungeon.io/)
+
 						[olaf.janssen@fontys.nl](olaf.janssen@fontys.nl)
 
 						[https://olafjanssen.github.io/nlp-workshop/](https://olafjanssen.github.io/nlp-workshop/)
@@ -38,24 +41,24 @@
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						**Natural Language Processing** is the challenging task of:
+						## Why is NLP challenging?
+						(compared to programming languages, or methods of communication)
 
-						*analyzing*, *understanding*, and *generating* natural languages,
-
-						i.e. languages that are naturally spoken or written by humans.
-
-						[AI Dungeon Game](https://play.aidungeon.io/)
+						- lousy information density
+						- text is ambiguous
+						- most utterances are not instructions or facts
+						- even humans are often quite crappy at NLP
+						- often depends on a life-time of learned common knowledge for context
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## Why is NLP challenging?
-						(compared to programming languages)
+						## Why is NLP so promising/interesting?
+						
+						- convert concepts of any complexity into a linear chain of words, which can be understood by humans
+						- once a model understands language, we can tell it do whatever we want
 
-						- text is ambiguous
-						- most utterances are not instructions or facts
-						- even humans are crap at NLP
-						- often depends on a life-time of learned common knowledge for context
+						[Prompt engineering with Jurassic-1](https://studio.ai21.com/)
 					</script>
 				</section>
 				<section data-markdown>
@@ -81,12 +84,11 @@
 
 						* [NLP in Action](https://www.manning.com/books/natural-language-processing-in-action) Online book with great examples
 						* [NLP-progress](https://github.com/sebastianruder/NLP-progress)
-						* [Next gen NLP-models](https://medium.com/huggingface/the-best-and-most-current-of-modern-natural-language-processing-5055f409a1d1)
 
+						* [HuggingFace: Next gen NLP-models](https://medium.com/huggingface/the-best-and-most-current-of-modern-natural-language-processing-5055f409a1d1)
 						* [IBM APIs](https://developer.ibm.com/exchanges/models/)
 						* [IBM Watson personality analyser](http://www.watsonpersonality.com), [demo on text](https://personality-insights-demo.ng.bluemix.net)
 						* [Text generator](https://talktotransformer.com) or summarizer ([autotldr](https://www.reddit.com/r/autotldr/comments/31b9fm/faq_autotldr_bot/))
-						* [Trump tweetbot start semester](https://twitter.com/search?q=dontrump_lstm)
 
 					</script>
 				</section>
@@ -123,7 +125,7 @@
 						## 1. Breaking up your text
 
 						**segments**: cut document into meaningful units (sentences)
-						* 2019 is a way to start a sentence, i.e. that stinks?!
+						* 2021 is a way to start a sentence, i.e. that stinks?!
 					</script>
 				</section>
 				<section data-markdown>
@@ -142,8 +144,8 @@
 					<script type="text/template">
 						## 1. Breaking up your text
 
-						build a **lexicon** (your 'dictionary')
-						* contains tokens + n-grams
+						build a **lexicon** (your 'dictionary/vocabulary')
+						* contains tokens + n-grams - stop words
 
 					</script>
 				</section>
@@ -320,7 +322,7 @@
 					<script type="text/template">
 						## Next week
 
-						Going deep, the road towards GPT-3 ([openai](https://beta.openai.com/))
+						Going deep, the road towards general language models such as GPT-3 ([openai](https://beta.openai.com/))
 
 						<iframe width="560" height="315" src="https://www.youtube.com/embed/8V20HkoiNtc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 					</script>
