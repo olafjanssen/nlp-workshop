@@ -32,72 +32,65 @@
 
 						[olaf.janssen@fontys.nl](olaf.janssen@fontys.nl)
 
+						[Write with GPT-2](https://transformer.huggingface.co/doc/distil-gpt2)
+
 						[https://olafjanssen.github.io/nlp-workshop/](https://olafjanssen.github.io/nlp-workshop/)
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						**Natural Language Processing** is the challenging task of:
-
-						*analyzing*, *understanding*, and *generating* natural languages,
-
-						i.e. languages that are naturally spoken or written by humans.
-
 						[GPT-3 on askReddit](https://www.kmeme.com/2020/10/gpt-3-bot-went-undetected-askreddit-for.html)
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## NLP Pipeline
+						## **Generate** new text
+						
+						From Vector-to-Vector to Sequence-to-Sequence
 
-						1. **tokenize**: break up your text data into chunks
-						2. turn text into **numerical data**
-						3. condense the data so it captures **meaning**
-						4. **search** for a response using the meaning
-						5. use encoded response to **generate** new text
+						![](https://karpathy.github.io/assets/rnn/diags.jpeg)
 
-						(Not all applications implement all steps.)
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## 5. **Generate** new text
+						## Seq2Seq Timeline
 
-						- Recurrent Neural Networks (RNN) (Do not use)
-						- Long Short-Term Memory (LSTM)
-						- Sequence-to-Sequence models
-						- Transformers (robots in disguise)
+						- 1986 - Recurrent Neural Networks (RNN) (Do not use)
+						- 1997 - Long Short-Term Memory (LSTM)
+						- Encoder-Decoder architecture
+						- 2017 - Transformers (robots in disguise)
 
 						[TLDR;](https://www.youtube.com/watch?v=TQQlZhbC5ps&ab_channel=CodeEmporium)
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## 5. Recurrent Neural Networks (RNN)
+						## Recurrent Neural Networks (RNN)
 
 						Tries to tackle that A/CNNs expect fixed input and output length, by allowing to rembember previous results, see [explanation](https://victorzhou.com/blog/intro-to-rnns/).
 						
 						**Pro:** simple, understandable implementation
 
-						**Cons:** exploding/vanishing gradients makes it impractical for larger problems
+						**Cons:** exploding/vanishing gradients makes it impractical for larger problems, training is slow
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## 5. Long-Short-Term Memory (LSTM)
+						## Long-Short-Term Memory (LSTM)
 
 						To improve on RNNs, we can use a **[Long Short-Term Memory (LSTM)](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)** layer ([more explanation](https://medium.com/mlreview/understanding-lstm-and-its-diagrams-37e2f46f1714)), by adding more elaborate forget/memory gates.
 
 						With an LSTM you also capture the time dimension in the [memory cell](https://livebook.manning.com/book/natural-language-processing-in-action/chapter-9/31) of the LSTM layer: **thought vector**. We call this state the thought vector. It not only summarizes a text, it encodes the train-of-thought and context of a statement.
 
-						**Pros:** also works for other time-series type of data
+						**Pros:** also works for other time-series type of data, has longer 'memory' than RNN
 
-						**Cons:** good at _how_ something is said, mimicking style. You have little control on the content.
+						**Cons:** Still slow (sequential input) You have little control on the content.
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## 5. **Generate** new text with Seq2Seq
+						## **Generate** new text with the Encoder-Decoder architecture (and LSTMs)
 
 						To really create novel text we use LSTMs in a **[Sequence-to-Sequence](https://livebook.manning.com/book/natural-language-processing-in-action/chapter-10/22)** model or **encoder-decoder architecture** ([more explanation](https://medium.com/analytics-vidhya/intuitive-understanding-of-seq2seq-model-attention-mechanism-in-deep-learning-1c1c24aace1e)).
 
@@ -109,24 +102,23 @@
 						- Co-authoring books ([Ronald Giphart's _Ik, Robot_](https://www.vice.com/nl/article/bj7ve4/we-spraken-ronald-giphart-over-hoe-hij-zijn-nieuwe-werk-samen-met-ai-maakte))
 						- [Reproducing Trump tweets](https://github.com/eleurent/make-lstm-great-again)
 
-						**Cons:** you need a huge amount of data to produce correct grammar, good at _how_ something is said, mimicking style. You have little control on the content.
+						**Cons:** the thought vector is still very limited, so that e.g. grammar is not properly picked up and relations between words between sentences
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## 5. Transformers
+						## Transformers
 
-						Since the introduction of the Bi-directional [Transformer architecture](https://jalammar.github.io/illustrated-transformer/). NLP has taken another leap. Meaning is no longer context-free as with word embeddings but completely depended on context, notable examples: BERT, GPT-2/3, XLNET, T5.
+						Since the introduction of the Bi-directional [Transformer architecture](https://jalammar.github.io/illustrated-transformer/). NLP has taken another leap. Meaning is no longer context-free as with word embeddings but completely depended on context using **attention**, notable examples: BERT, GPT-2/3, XLNET, T5.
 						
 						Transformer based models use _self-attention_ and _positional encoding_, _segment encoding_, _multi-headed attention_... 
 						
-						**Pros:** allows transfer learning, limit has not been reached yet
+						**Pros:** allows transfer learning, limit has not been reached yet, applicable to other domains
 
-						- [Write with GPT-2](https://transformer.huggingface.co/doc/distil-gpt2)
 						- [Explanation of BERT](https://www.analyticsvidhya.com/blog/2019/09/demystifying-bert-groundbreaking-nlp-framework/)
 						- [BERT Demo](http://mccormickml.com/2019/05/14/BERT-word-embeddings-tutorial/)
+						- [BERT visualisations](https://github.com/jessevig/bertviz)
 						- [Illustrated GPT-2 explanation](https://jalammar.github.io/illustrated-gpt2/)
-						- [Visualization of transformer attention](https://exbert.net/)
 						- [Transfer learning with Transformers](https://medium.com/huggingface/how-to-build-a-state-of-the-art-conversational-ai-with-transfer-learning-2d818ac26313)
 					</script>
 				</section>
@@ -150,25 +142,20 @@
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## X. The holy grail of NLP
+						## Is it a model or is it an agent?
 
 						Independent algorithms can statistically classify, summarize meaning and find content related in meaning, predict and generate new text.
 
 						**But** while it appears to understand text, does it understand its own output? Watch an [interview with GPT-3](https://www.youtube.com/watch?v=PqbB07n_uQ4&ab_channel=EricElliott).
+						
+						What would it take to make the next leap?
 
-						To create a high-quality NLP bot, we need to combine all of the methods above and feed the output back into the NLP algorithms, for instance:
-						- spell/grammar check its own output
-						- do sentiment analysis of its own output and choose a proper tone of voice
-						- reject answers that are in meaning too far away from the user's input
-						- fact checking, world building
+						- combine with other modalities?
+						- fact checking, world building?
+						- spell/grammar check its own output?
+						- do sentiment analysis of its own output and choose a proper tone of voice?
+						- reject answers that are in meaning too far away from the user's input?
 						- ...
-					</script>
-				</section>
-				<section data-markdown>
-					<script type="text/template">
-						# Your turn!
-
-						[HuggingFace - Solving NLP one commit at a time](https://huggingface.co/)
 					</script>
 				</section>
 			</div>
