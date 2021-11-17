@@ -34,12 +34,9 @@
 
 						[Write with GPT-2](https://transformer.huggingface.co/doc/distil-gpt2)
 
-						[https://olafjanssen.github.io/nlp-workshop/](https://olafjanssen.github.io/nlp-workshop/)
-					</script>
-				</section>
-				<section data-markdown>
-					<script type="text/template">
 						[GPT-3 on askReddit](https://www.kmeme.com/2020/10/gpt-3-bot-went-undetected-askreddit-for.html)
+
+						[https://olafjanssen.github.io/nlp-workshop/](https://olafjanssen.github.io/nlp-workshop/)
 					</script>
 				</section>
 				<section data-markdown>
@@ -56,7 +53,7 @@
 					<script type="text/template">
 						## Seq2Seq Timeline
 
-						- 1986 - Recurrent Neural Networks (RNN) (Do not use)
+						- 1986 - Recurrent Neural Networks (RNN)
 						- 1997 - Long Short-Term Memory (LSTM)
 						- Encoder-Decoder architecture
 						- 2017 - Transformers (robots in disguise)
@@ -68,11 +65,11 @@
 					<script type="text/template">
 						## Recurrent Neural Networks (RNN)
 
-						Tries to tackle that A/CNNs expect fixed input and output length, by allowing to rembember previous results, see [explanation](https://victorzhou.com/blog/intro-to-rnns/).
+						Tries to tackle that A/CNNs expect fixed input and output length, by allowing to rembember previous results, see [explanation](https://victorzhou.com/blog/intro-to-rnns/) and [implementation](https://towardsdatascience.com/implementation-of-rnn-lstm-and-gru-a4250bf6c090).
 						
-						**Pro:** simple, understandable implementation
+						**Pro:** simple, understandable implementation, useful for simple autocomplete
 
-						**Cons:** exploding/vanishing gradients makes it impractical for larger problems, training is slow
+						**Cons:** exploding/vanishing gradients makes it impractical for larger problems, training is sequential and thus slow
 					</script>
 				</section>
 				<section data-markdown>
@@ -83,18 +80,16 @@
 
 						With an LSTM you also capture the time dimension in the [memory cell](https://livebook.manning.com/book/natural-language-processing-in-action/chapter-9/31) of the LSTM layer: **thought vector**. We call this state the thought vector. It not only summarizes a text, it encodes the train-of-thought and context of a statement.
 
-						**Pros:** also works for other time-series type of data, has longer 'memory' than RNN
+						**Pros:** has longer 'memory' than RNN
 
-						**Cons:** Still slow (sequential input) You have little control on the content.
+						**Cons:** still slow (sequential input). You have little control on the content. Need lots of data for correct grammar.
 					</script>
 				</section>
 				<section data-markdown>
 					<script type="text/template">
 						## **Generate** new text with the Encoder-Decoder architecture (and LSTMs)
 
-						To really create novel text we use LSTMs in a **[Sequence-to-Sequence](https://livebook.manning.com/book/natural-language-processing-in-action/chapter-10/22)** model or **encoder-decoder architecture** ([more explanation](https://medium.com/analytics-vidhya/intuitive-understanding-of-seq2seq-model-attention-mechanism-in-deep-learning-1c1c24aace1e)).
-
-						Pipeline: First train an encoder LSTM and take out its thought vector. Inject the thought vector in the decoder LSTM and predict whole new output.
+						To improve reuse and text generation we split the problem into an [encoder and decoder](https://livebook.manning.com/book/natural-language-processing-in-action/chapter-10/22) ([more explanation](https://medium.com/analytics-vidhya/intuitive-understanding-of-seq2seq-model-attention-mechanism-in-deep-learning-1c1c24aace1e)).
 
 						Applications:
 						- [machine translations](https://blog.keras.io/a-ten-minute-introduction-to-sequence-to-sequence-learning-in-keras.html)
@@ -109,7 +104,7 @@
 					<script type="text/template">
 						## Transformers
 
-						Since the introduction of the Bi-directional [Transformer architecture](https://jalammar.github.io/illustrated-transformer/). NLP has taken another leap. Meaning is no longer context-free as with word embeddings but completely depended on context using **attention**, notable examples: BERT, GPT-2/3, XLNET, T5.
+						Since the introduction of the Bi-directional [Transformer architecture](https://jalammar.github.io/illustrated-transformer/)[2](https://medium.com/inside-machine-learning/what-is-a-transformer-d07dd1fbec04). NLP has taken another leap. Meaning is no longer context-free as with word embeddings but completely depended on context using **attention**, notable examples: BERT, GPT-2/3, XLNET, T5.
 						
 						Transformer based models use _self-attention_ and _positional encoding_, _segment encoding_, _multi-headed attention_... 
 						
@@ -120,6 +115,15 @@
 						- [BERT visualisations](https://github.com/jessevig/bertviz)
 						- [Illustrated GPT-2 explanation](https://jalammar.github.io/illustrated-gpt2/)
 						- [Transfer learning with Transformers](https://medium.com/huggingface/how-to-build-a-state-of-the-art-conversational-ai-with-transfer-learning-2d818ac26313)
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Beyond the model
+
+						- How to prevent text-loops, run-off sentences, bad grammar? With [beam-search](https://towardsdatascience.com/foundations-of-nlp-explained-visually-beam-search-how-it-works-1586b9849a24), [visualized](https://seq2seq-vis.io/).
+						- How to validate your output? [Bleu Score / Word Error Metric](https://towardsdatascience.com/foundations-of-nlp-explained-bleu-score-and-wer-metrics-1a5ba06d812b)
+						
 					</script>
 				</section>
 				<section data-markdown>
@@ -148,6 +152,9 @@
 
 						**But** while it appears to understand text, does it understand its own output? Watch an [interview with GPT-3](https://www.youtube.com/watch?v=PqbB07n_uQ4&ab_channel=EricElliott).
 						
+						When is 100% of what we read generated text? 
+						When does it become conscious?
+
 						What would it take to make the next leap?
 
 						- combine with other modalities?
