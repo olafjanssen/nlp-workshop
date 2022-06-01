@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>NLP Introduction Overview</title>
+
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/serif-nlp.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/monokai.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			let link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-markdown>
+					<script type="text/template">
+						# NLP Workshop
+						## Part 2: Advanced NLP
+
+						[olaf.janssen@fontys.nl](olaf.janssen@fontys.nl)
+
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### Short historical and conceptual timeline
+
+![Image](https://i0.wp.com/www.searchenginepeople.com/wp-content/uploads/2010/10/clip_image032.jpg?ssl=1)
+
+(1986) - Autocomplete (RNN), (1997) - Machine Translation (LSTM), (2017) - Text generation (Transformers)
+
+**SCALE UP (125M -> 173B parameters)**
+
+* ... still glorified autocomplete?
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Towards Advanced Text Generation
+
+<div style="font-size:0.7em;">
+
+| name             | parameters         | release date | by                                      | links                                                                                 | data                                                       |
+| ---------------- | ------------------ | ------------ | --------------------------------------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| GPT-3 (base)     | 2.7B/6.7B/13B/175B | 2020-06-11   | [Open AI](https://openai.com/)          | [wiki](https://en.wikipedia.org/wiki/GPT-3) [github](https://github.com/openai/gpt-3) | [Common Crawl](https://en.wikipedia.org/wiki/Common_Crawl) |
+| GPT-Neo          | 2.7B/1.3B/125M     | 2021-03-21   | [Eleuther AI](https://www.eleuther.ai/) | [github](https://github.com/EleutherAI/gpt-neo/)                                      | [The Pile](https://pile.eleuther.ai/)                      |
+| GPT-J            | 6B                 | 2021-06-08   | [Eleuther AI](https://www.eleuther.ai/) | [github](https://github.com/kingoflolz/mesh-transformer-jax/)                         | [The Pile](https://pile.eleuther.ai/)                      |
+| FLAN             | 137B               | 2021-10-06   | Google                                  | [blog](https://ai.googleblog.com/2021/10/introducing-flan-more-generalizable.html)    |                                                            |
+| GPT-3 (instruct) | 2.7B/6.7B/13B/175B | 2022-01-20   | [Open AI](https://openai.com/)          |                                                                                       | [Common Crawl](https://en.wikipedia.org/wiki/Common_Crawl) |
+| GPT-NeoX         | 20B                | 2022-02-02   | [Eleuther AI](https://www.eleuther.ai/) | [github](https://github.com/EleutherAI/gpt-neox)                                      | [The Pile](https://pile.eleuther.ai/)                      |
+| Jurassic-1       | 7.5B/178B          |              | [AI21 Labs](https://www.ai21.com/)      |                                                                                       |                                                            |
+| Fairseq          | 13B                |              | [Meta](https://github.com/pytorch/fairseq/) | [github](https://github.com/pytorch/fairseq/) |                                        |                                                                                       |                                                            |
+
+</div>
+
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### Warming-up examples
+
+- Many-shot
+- Few-shot
+- One-sho
+- Zero-shot prompts
+
+https://beta.openai.com/examples
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### So?
+Glorified autocomplete  
+_or_  
+task-agnostic model  
+*or*  
+budding consciousness
+
++ where is the knowledge stored?
++ can it ever solve complicated problems?
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### Learning `toki pona`
+
+[https://beta.openai.com/playground](https://beta.openai.com/playground)
+
+Inspired by: [https://www.reddit.com/r/GPT3/comments/tpnp4b/teaching_toki_pona_to_gpt3/](https://www.reddit.com/r/GPT3/comments/tpnp4b/teaching_toki_pona_to_gpt3/)
+
+```
+mi pona | I'm happy
+You're happy | sina pona
+mi jan | I'm a person
+sina jan | You're a person
+mi mama | I'm a mother
+sina mama | You're a mother
+mi kama | I come
+sina kama | You come
+mi pilin | I feel
+sina pilin | you feel
+I'm a good mother | mi mama pona
+sina jan pona | You're a good person
+You feel happy | sina pilin pona
+You're a good mother | sina mama pona
+jan li pona | The person is good
+The mom is good | mama li pona
+mi pona e jan | I help the person
+I fix it | mi pona e ona
+You help the good mother | sina pona e mama pona
+tenpo ni la, mi pilin pona | I feel good now
+tenpo pini la, mi pilin ike | I used to feel bad
+mi lukin e ni | I see this
+sina lukin e ni la, sina pilin seme? | How do you feel when you look at this?
+You feel good when you look at me | sina lukin e mi la, sina pilin pona
+```
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### Prompt engineering
+
+						Remember: GTP-3 does not mimic a single human author, but resembles a **superposition of authors**.
+						
+						- We therefore have to take a **subtractive approach** to prompt engineering.
+							- Define in human language *which* author should respond.
+							- Restrict the answer space.  
+				</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### Prompt strategies
+
+- By demonstration (N-shot)
+- Direct:<br> - `Translate French to English`
+- By Proxy<br> - `Answer this question as Mahatma Gandhi`
+- In natural context<br> - `Life is good, or as they say in Italy:`
+- Constraining answer space:<br> - `Translate to French. English: "Hello!" French: "`
+
+In general: setting the the same location as starting position in context-space.
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### A side note on ethics
+- It learns and expresses biases (gender/race/cultural).
+- It can win debates on either side of the argument.
+- It can impersonate people.
+- It can lie, hallucinate, make up facts, and propagate false beliefs.
+
+**The usual counter strategy thusfar:** <!-- element class="fragment" -->
+- fine-tuning the model by human evaluators (HITL)<!-- element class="fragment" -->
+- censoring and monitoring output<!-- element class="fragment" -->
+- filtering input data<!-- element class="fragment" -->
+
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### Metaprompt engineering
+LLMs perform poorly on complex closed questions,  
+but it often knows *how* and *if* it can solve those problems.
+
+What are we missing?
+
+We need to **extend the window of deliberation**: 
+- perform silent reasoning
+- avoid premature verdicts
+- add moments of self-reflection
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### Metaprompt strategies
+
+
+Serialize reasoning and prevent rationalization.
+
+- Use *metacognition*: 
+	- `"Let's solve this problem by splitting it into steps."`
+- Test the probabilty of the continuation: 
+	- `"Thus, the correct answer is:"`
+- Expert generator: 
+	- `I create an expert generator that picks an expert most qualified to answer this question.`
+- Self-curation and self-evaluation:  
+	- `"Check the answer to the original question."`
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### Traditional open-ended chatbot 
+
+```mermaid
+sequenceDiagram
+	participant H as Human
+	participant B as Bot
+	Note right of B: context prompt
+	B->>H: Hi human
+	H->>B: Hi robot
+	Note right of B: append to prompt
+	B->>H: How may I help you?
+	H->>B: I want to order a pizza
+	Note right of B: append to prompt
+	B->>H: Which toppings?
+```
+
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### Self-aware chatbot 
+
+```mermaid
+sequenceDiagram
+	participant H as Human
+	participant B as Bot
+	participant M as Meta-Bot
+	participant O as Observer-Bot
+	
+	Note over B: context prompt
+	Note over M: self-image prompt
+	Note over O: neutral observer prompt
+	
+	H->>B: I feel lonely today.
+	B->>H: Stop complaining!
+	B-->>M: How do you think Human responds?
+	M-->>B: Hurt
+	M-->>O: How does this make Bot feel?
+	O-->>M: Guilty
+	Note over M: update self-image
+	B-->>M: Could I respond better?
+	M-->>B: Yes, by showing compassion.
+	Note over B: update prompt
+	B->>H: I'm sorry, that was harsh. How can I help you?
+	H->>B: That's okay.
+```
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						### So?
+
+						Can we come up with interesting meta-prompt experiments?
+```
+					</script>
+				</section>										
+			</div>
+		</div>
+
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true }
+				]
+			});
+		</script>
+	</body>
+</html>

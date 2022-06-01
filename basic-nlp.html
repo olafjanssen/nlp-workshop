@@ -41,6 +41,16 @@
 				</section>
 				<section data-markdown>
 					<script type="text/template">
+						## This workshop
+
+						1. NLP Applications Overview
+						2. Traditional NLP Pipeline
+						3. Transformer architecture
+
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
 						## Why is NLP challenging?
 						(compared to programming languages, or other methods of communication)
 
@@ -58,7 +68,6 @@
 						- convert concepts of any complexity into a linear chain of words, which can be understood by humans
 						- once a model understands language, we can tell it do whatever we want
 
-						[Prompt engineering with Jurassic-1](https://studio.ai21.com/)
 					</script>
 				</section>
 				<section data-markdown>
@@ -86,9 +95,6 @@
 						* [NLP-progress](https://github.com/sebastianruder/NLP-progress)
 
 						* [HuggingFace: Next gen NLP-models](https://medium.com/huggingface/the-best-and-most-current-of-modern-natural-language-processing-5055f409a1d1)
-						* [IBM APIs](https://developer.ibm.com/exchanges/models/)
-						* ~~[IBM Watson personality analyser](http://www.watsonpersonality.com), [demo on text](https://personality-insights-demo.ng.bluemix.net)~~
-						* [Text generator](https://talktotransformer.com) or summarizer ([autotldr](https://www.reddit.com/r/autotldr/comments/31b9fm/faq_autotldr_bot/))
 
 					</script>
 				</section>
@@ -179,8 +185,6 @@
 				<section data-markdown>
 					<script type="text/template">
 						## 1. Breaking up your text
-
-						<!-- [Demo Sandbox](https://colab.research.google.com/drive/1z3vzQGts7yAAX9tngMRU5nJbdEVJVg51#scrollTo=zZjZ_5l0OTAS&forceEdit=true&sandboxMode=true) -->
 						
 						Some tutorials:
 						- [Tutorial using spaCy](https://stackabuse.com/python-for-nlp-tokenization-stemming-and-lemmatization-with-spacy-library/)
@@ -244,8 +248,6 @@
 						* **[cosine similarity](http://blog.christianperone.com/2013/09/machine-learning-cosine-similarity-for-vector-space-models-part-iii/)** angle between two vectors (aligned meaning)
 
 						Once you master this you can create: [search engines](https://medium.com/@deangelaneves/how-to-build-a-search-engine-from-scratch-in-python-part-1-96eb240f9ecb), all kinds of classifications such as sentiment/[spam](https://narengowda.github.io/logistic-regression-sms-spam-ham-classification-using-tfidf-vectorizer/)/sarcasm, or a [Q&A chat bot](https://medium.com/analytics-vidhya/building-a-simple-chatbot-in-python-using-nltk-7c8c8215ac6e) [with large corpus of questions with answers](http://www.wildml.com/2016/07/deep-learning-for-chatbots-2-retrieval-based-model-tensorflow/).
-
-						<!-- [Demo Sandbox](https://colab.research.google.com/drive/1z3vzQGts7yAAX9tngMRU5nJbdEVJVg51#scrollTo=zZjZ_5l0OTAS&forceEdit=true&sandboxMode=true) -->
 
 					</script>
 				</section>
@@ -320,11 +322,128 @@
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## Next week
+						## Towards Advanced Text Generation
 
-						Going deep, the road towards general language models such as GPT-3 ([openai](https://beta.openai.com/))
+<div style="font-size:0.7em;">
 
-						<iframe width="560" height="315" src="https://www.youtube.com/embed/8V20HkoiNtc" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+| name             | parameters         | release date | by                                      | links                                                                                 | data                                                       |
+| ---------------- | ------------------ | ------------ | --------------------------------------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| GPT-3 (base)     | 2.7B/6.7B/13B/175B | 2020-06-11   | [Open AI](https://openai.com/)          | [wiki](https://en.wikipedia.org/wiki/GPT-3) [github](https://github.com/openai/gpt-3) | [Common Crawl](https://en.wikipedia.org/wiki/Common_Crawl) |
+| GPT-Neo          | 2.7B/1.3B/125M     | 2021-03-21   | [Eleuther AI](https://www.eleuther.ai/) | [github](https://github.com/EleutherAI/gpt-neo/)                                      | [The Pile](https://pile.eleuther.ai/)                      |
+| GPT-J            | 6B                 | 2021-06-08   | [Eleuther AI](https://www.eleuther.ai/) | [github](https://github.com/kingoflolz/mesh-transformer-jax/)                         | [The Pile](https://pile.eleuther.ai/)                      |
+| FLAN             | 137B               | 2021-10-06   | Google                                  | [blog](https://ai.googleblog.com/2021/10/introducing-flan-more-generalizable.html)    |                                                            |
+| GPT-3 (instruct) | 2.7B/6.7B/13B/175B | 2022-01-20   | [Open AI](https://openai.com/)          |                                                                                       | [Common Crawl](https://en.wikipedia.org/wiki/Common_Crawl) |
+| GPT-NeoX         | 20B                | 2022-02-02   | [Eleuther AI](https://www.eleuther.ai/) | [github](https://github.com/EleutherAI/gpt-neox)                                      | [The Pile](https://pile.eleuther.ai/)                      |
+| Jurassic-1       | 7.5B/178B          |              | [AI21 Labs](https://www.ai21.com/)      |                                                                                       |                                                            |
+| Fairseq          | 13B                |              | [Meta](https://github.com/pytorch/fairseq/) | [github](https://github.com/pytorch/fairseq/) |                                        |                                                                                       |                                                            |
+
+</div>
+
+						[https://beta.openai.com/playground](https://beta.openai.com/playground)
+						
+						[Prompt engineering with Jurassic-1](https://studio.ai21.com/)
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## **Generate** new text
+						
+						From Vector-to-Vector to Sequence-to-Sequence
+
+						![](https://karpathy.github.io/assets/rnn/diags.jpeg)
+
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Seq2Seq Timeline
+
+						- 1986 - Recurrent Neural Networks (RNN)
+						- 1997 - Long Short-Term Memory (LSTM)
+						- 2017 - Transformers (robots in disguise)
+
+						[TLDR;](https://www.youtube.com/watch?v=TQQlZhbC5ps&ab_channel=CodeEmporium)
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Recurrent Neural Networks (RNN)
+
+						Tries to tackle that A/CNNs expect fixed input and output length, by allowing to rembember previous results, see [explanation](https://victorzhou.com/blog/intro-to-rnns/) and [implementation](https://towardsdatascience.com/implementation-of-rnn-lstm-and-gru-a4250bf6c090).
+						
+						**Pro:** simple, understandable implementation, useful for simple autocomplete
+
+						**Cons:** exploding/vanishing gradients makes it impractical for larger problems, training is sequential and thus slow
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Long-Short-Term Memory (LSTM)
+
+						To improve on RNNs, we can use a **[Long Short-Term Memory (LSTM)](https://colah.github.io/posts/2015-08-Understanding-LSTMs/)** layer ([more explanation](https://medium.com/mlreview/understanding-lstm-and-its-diagrams-37e2f46f1714)), by adding more elaborate forget/memory gates.
+
+						With an LSTM you also capture the time dimension in the [memory cell](https://livebook.manning.com/book/natural-language-processing-in-action/chapter-9/31) of the LSTM layer: **thought vector**. We call this state the thought vector. It not only summarizes a text, it encodes the train-of-thought and context of a statement.
+
+						**Pros:** has longer 'memory' than RNN
+
+						**Cons:** still slow (sequential input). You have little control on the content. Need lots of data for correct grammar.
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## **Generate** new text with the Encoder-Decoder architecture (and LSTMs)
+
+						To improve reuse and text generation we split the problem into an [encoder and decoder](https://livebook.manning.com/book/natural-language-processing-in-action/chapter-10/22) ([more explanation](https://medium.com/analytics-vidhya/intuitive-understanding-of-seq2seq-model-attention-mechanism-in-deep-learning-1c1c24aace1e)).
+
+						Applications:
+						- [machine translations](https://blog.keras.io/a-ten-minute-introduction-to-sequence-to-sequence-learning-in-keras.html)
+						- Chatbot conversations, Q&A bots, Document summarization, Produce new works of Shakespeare
+						- Co-authoring books ([Ronald Giphart's _Ik, Robot_](https://www.vice.com/nl/article/bj7ve4/we-spraken-ronald-giphart-over-hoe-hij-zijn-nieuwe-werk-samen-met-ai-maakte))
+						- [Reproducing Trump tweets](https://github.com/eleurent/make-lstm-great-again)
+
+						**Cons:** the thought vector is still very limited, so that e.g. grammar is not properly picked up and relations between words between sentences
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Transformers
+
+						Since the introduction of the Bi-directional [Transformer architecture](https://jalammar.github.io/illustrated-transformer/)[2](https://medium.com/inside-machine-learning/what-is-a-transformer-d07dd1fbec04). NLP has taken another leap. Meaning is no longer context-free as with word embeddings but completely depended on context using **attention**, notable examples: BERT, GPT-2/3, XLNET, T5.
+						
+						Transformer based models use _self-attention_ and _positional encoding_, _segment encoding_, _multi-headed attention_... 
+						
+						**Pros:** allows transfer learning, limit has not been reached yet, applicable to other domains
+
+						- [Explanation of BERT](https://www.analyticsvidhya.com/blog/2019/09/demystifying-bert-groundbreaking-nlp-framework/)
+						- [BERT Demo](http://mccormickml.com/2019/05/14/BERT-word-embeddings-tutorial/)
+						- [BERT visualisations](https://github.com/jessevig/bertviz)
+						- [Illustrated GPT-2 explanation](https://jalammar.github.io/illustrated-gpt2/)
+						- [Transfer learning with Transformers](https://medium.com/huggingface/how-to-build-a-state-of-the-art-conversational-ai-with-transfer-learning-2d818ac26313)
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## Beyond the model
+
+						- How to prevent text-loops, run-off sentences, bad grammar? With [beam-search](https://towardsdatascience.com/foundations-of-nlp-explained-visually-beam-search-how-it-works-1586b9849a24), [visualized](https://seq2seq-vis.io/).
+						- How to validate your output? [Bleu Score / Word Error Metric](https://towardsdatascience.com/foundations-of-nlp-explained-bleu-score-and-wer-metrics-1a5ba06d812b)
+						
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+						## What is the full potential of models such as GPT3?
+
+						With proper prompt engineering 1 model can do:
+						- summarization
+						- entitiy extraction
+						- sentiment analysis
+						- Q&A
+						- act like a chatbot
+						- write and improve computer code
+						- basically anything question you can put into words, it will try to do...
+						
+						Unlock the full potential in the [Advanced workshop](advanced-nlp.html).
 					</script>
 				</section>
 			</div>
