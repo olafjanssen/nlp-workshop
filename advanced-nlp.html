@@ -34,6 +34,29 @@
 
 					</script>
 				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						### Content
+						
+						- Transformers (X-formers) and Attention mechanism
+						- X-formers family tree
+						- A bit about prompting and beyond...
+					</script>
+				</section>
+
+
+				<section data-markdown>
+					<script type="text/template">
+						### Main sources for this workshop
+						
+						- [Illustrated Transformer explanation](https://jalammar.github.io/illustrated-transformer/)
+						- [HuggingFace x-former overview](https://huggingface.co/transformers/v4.5.1/model_summary.html)
+						- [X-former model catalogue overview](https://amatriain.net/blog/transformer-models-an-introduction-and-catalog-2d1e9039f376/)
+						- [Reinforcement Learning from Human Feedback](https://huggingface.co/blog/rlhf)
+					</script>
+				</section>
+
 				<section data-markdown>
 					<script type="text/template">
 						### Short historical and conceptual timeline
@@ -49,86 +72,146 @@
 				</section>
 				<section data-markdown>
 					<script type="text/template">
-						## Towards Advanced Text Generation
+						### What does scale/tuning do in how you use a language model?
 
-<div style="font-size:0.7em;">
-
-| name             | parameters         | release date | by                                      | links                                                                                 | data                                                       |
-| ---------------- | ------------------ | ------------ | --------------------------------------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| GPT-3 (base)     | 2.7B/6.7B/13B/175B | 2020-06-11   | [Open AI](https://openai.com/)          | [wiki](https://en.wikipedia.org/wiki/GPT-3) [github](https://github.com/openai/gpt-3) | [Common Crawl](https://en.wikipedia.org/wiki/Common_Crawl) |
-| GPT-Neo          | 2.7B/1.3B/125M     | 2021-03-21   | [Eleuther AI](https://www.eleuther.ai/) | [github](https://github.com/EleutherAI/gpt-neo/)                                      | [The Pile](https://pile.eleuther.ai/)                      |
-| GPT-J            | 6B                 | 2021-06-08   | [Eleuther AI](https://www.eleuther.ai/) | [github](https://github.com/kingoflolz/mesh-transformer-jax/)                         | [The Pile](https://pile.eleuther.ai/)                      |
-| FLAN             | 137B               | 2021-10-06   | Google                                  | [blog](https://ai.googleblog.com/2021/10/introducing-flan-more-generalizable.html)    |                                                            |
-| GPT-3 (instruct) | 2.7B/6.7B/13B/175B | 2022-01-20   | [Open AI](https://openai.com/)          |                                                                                       | [Common Crawl](https://en.wikipedia.org/wiki/Common_Crawl) |
-| GPT-NeoX         | 20B                | 2022-02-02   | [Eleuther AI](https://www.eleuther.ai/) | [github](https://github.com/EleutherAI/gpt-neox)                                      | [The Pile](https://pile.eleuther.ai/)                      |
-| Jurassic-1       | 7.5B/178B          |              | [AI21 Labs](https://www.ai21.com/)      |                                                                                       |                                                            |
-| Fairseq          | 13B                |              | [Meta](https://github.com/pytorch/fairseq/) | [github](https://github.com/pytorch/fairseq/) |                                        |                                                                                       |                                                            |
-
-</div>
+- Many-shot (T5)
+- Few-shot (GPT2)
+- One-shot (GPT3)
+- Zero-shot prompts (instructGPT)
+- More-than-I-asked-for (chatGPT)
 
 					</script>
 				</section>
+
 				<section data-markdown>
 					<script type="text/template">
-						### Warming-up examples
-
-- Many-shot
-- Few-shot
-- One-sho
-- Zero-shot prompts
-
-https://beta.openai.com/examples
+						### A parallelizable Seq2Seq using Attention
+						![Image](https://jalammar.github.io/images/t/the_transformer_3.png)
 					</script>
 				</section>
+
 				<section data-markdown>
 					<script type="text/template">
-						### So?
-Glorified autocomplete  
-_or_  
-task-agnostic model  
-*or*  
-budding consciousness
-
-+ where is the knowledge stored?
-+ can it ever solve complicated problems?
+						### The original image
+						![Image](https://miro.medium.com/v2/resize:fit:640/format:webp/1*3pxDWM3c1R_WSW7hVKoaRA.png)
 					</script>
 				</section>
+
+
 				<section data-markdown>
 					<script type="text/template">
-						### Learning `toki pona`
-
-[https://beta.openai.com/playground](https://beta.openai.com/playground)
-
-Inspired by: [https://www.reddit.com/r/GPT3/comments/tpnp4b/teaching_toki_pona_to_gpt3/](https://www.reddit.com/r/GPT3/comments/tpnp4b/teaching_toki_pona_to_gpt3/)
-
-```
-mi pona | I'm happy
-You're happy | sina pona
-mi jan | I'm a person
-sina jan | You're a person
-mi mama | I'm a mother
-sina mama | You're a mother
-mi kama | I come
-sina kama | You come
-mi pilin | I feel
-sina pilin | you feel
-I'm a good mother | mi mama pona
-sina jan pona | You're a good person
-You feel happy | sina pilin pona
-You're a good mother | sina mama pona
-jan li pona | The person is good
-The mom is good | mama li pona
-mi pona e jan | I help the person
-I fix it | mi pona e ona
-You help the good mother | sina pona e mama pona
-tenpo ni la, mi pilin pona | I feel good now
-tenpo pini la, mi pilin ike | I used to feel bad
-mi lukin e ni | I see this
-sina lukin e ni la, sina pilin seme? | How do you feel when you look at this?
-You feel good when you look at me | sina lukin e mi la, sina pilin pona
-```
+						### Encoder - Decoder architecture
+						![Image](https://jalammar.github.io/images/t/The_transformer_encoder_decoder_stack.png)
 					</script>
 				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						### Embedding and self-attention
+						![Image](https://jalammar.github.io/images/t/encoder_with_tensors_2.png)
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						### Using Q-K-V
+						![Image](https://jalammar.github.io/images/t/transformer_self_attention_vectors.png)
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						### Query retrieval system analogue
+
+						Query ~ search engine query<br>
+						Key ~ title of a web page<br>
+						Value ~ content of a web page<br>
+						
+						Attention or importance learned from similarity between Query and Key.<br><br>
+						The Key parameter is used to determine which parts of the input sequence the decoder should pay attention to, while the Value parameter provides the actual context needed.
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						### Using Q-K-V
+						![Image](https://jalammar.github.io/images/t/self-attention-output.png)
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						### Multi-headed attention
+						We can split the embedding in (logically) random pieces.
+						![Image](https://jalammar.github.io/images/t/transformer_multi-headed_self-attention-recap.png)
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						### Resulting attention
+						![Image](https://jalammar.github.io/images/t/transformer_self-attention_visualization_2.png)
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						### Decoder - Step 1
+						Create a new Key / Value from the last encoder.
+						
+						![Image](https://jalammar.github.io/images/t/transformer_decoding_1.gif)
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						### Decoder - Next steps 
+						Feed-forward the Query through the decoder.
+
+						![Image](https://jalammar.github.io/images/t/transformer_decoding_2.gif)
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						### X-former family tree
+						![Image](https://amatriain.net/blog/images/02-05.png)
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						### X-former timeline 1
+						![Image](https://amatriain.net/blog/images/02-06.png)
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						### X-former timeline 2
+						![Image](https://amatriain.net/blog/images/02-09.png)
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						### Short good-to-know
+						* Decoder only: GPTs (text completion)
+							- special shoutout to Llama / [Alpaca](https://github.com/antimatter15/alpaca.cpp)
+						* Encoder only: BERTs (classification)
+							- special shoutout to DistilBERT
+						* Encoder-Decoder: T5 (translation / task specific)
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						### The full table
+						
+						[Full catalogue of x-former descriptions](https://docs.google.com/spreadsheets/d/1ltyrAB6BL29cOv2fSpNQnnq2vbX8UrHl47d7FkIf6t4/edit#gid=0)
+					</script>
+				</section>
+
 				<section data-markdown>
 					<script type="text/template">
 						### Prompt engineering
@@ -153,21 +236,7 @@ You feel good when you look at me | sina lukin e mi la, sina pilin pona
 In general: setting the the same location as starting position in context-space.
 					</script>
 				</section>
-				<section data-markdown>
-					<script type="text/template">
-						### A side note on ethics
-- It learns and expresses biases (gender/race/cultural).
-- It can win debates on either side of the argument.
-- It can impersonate people.
-- It can lie, hallucinate, make up facts, and propagate false beliefs.
 
-**The usual counter strategy thusfar:** <!-- element class="fragment" -->
-- fine-tuning the model by human evaluators (HITL)<!-- element class="fragment" -->
-- censoring and monitoring output<!-- element class="fragment" -->
-- filtering input data<!-- element class="fragment" -->
-
-					</script>
-				</section>
 				<section data-markdown>
 					<script type="text/template">
 						### Metaprompt engineering
@@ -199,64 +268,28 @@ Serialize reasoning and prevent rationalization.
 	- `"Check the answer to the original question."`
 					</script>
 				</section>
+			
 				<section data-markdown>
 					<script type="text/template">
-						### Traditional open-ended chatbot 
-
-```mermaid
-sequenceDiagram
-	participant H as Human
-	participant B as Bot
-	Note right of B: context prompt
-	B->>H: Hi human
-	H->>B: Hi robot
-	Note right of B: append to prompt
-	B->>H: How may I help you?
-	H->>B: I want to order a pizza
-	Note right of B: append to prompt
-	B->>H: Which toppings?
-```
-
+						### What's going on now?
+						
+						- [Reinforcement Learning from Human Feedback (human alignment)](https://huggingface.co/blog/rlhf)
+						- Multi-modality
+						- External connections ([LlamaIndex]https://gpt-index.readthedocs.io/en/latest/index.html))
+						- Plug-in integration | Tool usage
+						- [(Self)-Engineering](https://arxiv.org/abs/2303.17580), [autoGPT](https://github.com/Torantulino/Auto-GPT#-installation)
+					
 					</script>
 				</section>
+
 				<section data-markdown>
 					<script type="text/template">
-						### Self-aware chatbot 
+						### So....
 
-```mermaid
-sequenceDiagram
-	participant H as Human
-	participant B as Bot
-	participant M as Meta-Bot
-	participant O as Observer-Bot
-	
-	Note over B: context prompt
-	Note over M: self-image prompt
-	Note over O: neutral observer prompt
-	
-	H->>B: I feel lonely today.
-	B->>H: Stop complaining!
-	B-->>M: How do you think Human responds?
-	M-->>B: Hurt
-	M-->>O: How does this make Bot feel?
-	O-->>M: Guilty
-	Note over M: update self-image
-	B-->>M: Could I respond better?
-	M-->>B: Yes, by showing compassion.
-	Note over B: update prompt
-	B->>H: I'm sorry, that was harsh. How can I help you?
-	H->>B: That's okay.
-```
+						Stop or not?
 					</script>
 				</section>
-				<section data-markdown>
-					<script type="text/template">
-						### So?
-
-						Can we come up with interesting meta-prompt experiments?
-```
-					</script>
-				</section>										
+			
 			</div>
 		</div>
 
