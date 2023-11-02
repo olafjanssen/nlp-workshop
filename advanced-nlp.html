@@ -49,7 +49,7 @@
 				<section data-markdown>
 					<script type="text/template">
 						### Main sources for this workshop
-						
+						- [Generative NLP recap and non-technical explainer](https://ig.ft.com/generative-ai/)
 						- [Illustrated Transformer explanation](https://jalammar.github.io/illustrated-transformer/)
 						- [HuggingFace x-former overview](https://huggingface.co/transformers/v4.5.1/model_summary.html)
 						- [X-former model catalogue overview](https://amatriain.net/blog/transformer-models-an-introduction-and-catalog-2d1e9039f376/)
@@ -70,19 +70,6 @@
 * ... still glorified autocomplete?
 					</script>
 				</section>
-				<section data-markdown>
-					<script type="text/template">
-						### What does scale/tuning do in how you use a language model?
-
-- Many-shot (T5)
-- Few-shot (GPT2)
-- One-shot (GPT3)
-- Zero-shot prompts (instructGPT)
-- More-than-I-asked-for (chatGPT)
-
-					</script>
-				</section>
-
 				<section data-markdown>
 					<script type="text/template">
 						### A parallelizable Seq2Seq using Attention
@@ -114,21 +101,38 @@
 
 				<section data-markdown>
 					<script type="text/template">
-						### Using Q-K-V
-						![Image](https://jalammar.github.io/images/t/transformer_self_attention_vectors.png)
-					</script>
-				</section>
-
-				<section data-markdown>
-					<script type="text/template">
 						### Query retrieval system analogue
 
 						Query ~ search engine query<br>
 						Key ~ title of a web page<br>
 						Value ~ content of a web page<br>
 						
-						Attention or importance learned from similarity between Query and Key.<br><br>
-						The Key parameter is used to determine which parts of the input sequence the decoder should pay attention to, while the Value parameter provides the actual context needed.
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						### QKV for X-transformers
+
+						- Query (Q): Represents the information we're currently looking at.<br>
+						- Key (K): Represents all the information we <b>can</b> attend to.<br>
+						- Value (V): Contains the actual content of the information we want to focus on.<br>
+								
+						Imagine you're at a party and you (the Query) are trying to find your friend Bob (the Key). Once you find Bob, you listen to what he's saying (the Value).
+						
+						The attention mechanism calculates a score by comparing the Query with each Key to determine how much attention should be paid to the corresponding Value.
+
+					</script>
+				</section>
+
+
+
+
+
+				<section data-markdown>
+					<script type="text/template">
+						### Using Q-K-V
+						![Image](https://jalammar.github.io/images/t/transformer_self_attention_vectors.png)
 					</script>
 				</section>
 
@@ -151,13 +155,6 @@
 					<script type="text/template">
 						### Resulting attention
 						![Image](https://jalammar.github.io/images/t/transformer_self-attention_visualization_2.png)
-					</script>
-				</section>
-
-				<section data-markdown>
-					<script type="text/template">
-						### Typical parameters
-						![Image](https://i.stack.imgur.com/dthvC.png)
 					</script>
 				</section>
 
@@ -202,6 +199,15 @@
 
 				<section data-markdown>
 					<script type="text/template">
+						### Base vs fine-tuned
+						![Image](https://python.langchain.com/assets/images/OSS_LLM_overview-b0a96cc35216ec43c3ccde7ed1140854.png)
+					</script>
+				</section>
+
+				
+
+				<section data-markdown>
+					<script type="text/template">
 						### Short good-to-know
 						* Decoder only: GPTs (text completion)
 							- special shoutout to Llama / [Alpaca](https://github.com/antimatter15/alpaca.cpp)
@@ -232,13 +238,25 @@
 				</section>
 				<section data-markdown>
 					<script type="text/template">
+						### What does scale/tuning do in how you use a language model?
+
+- Many-shot (T5)
+- Few-shot (GPT2)
+- One-shot (GPT3)
+- Zero-shot prompts (instructGPT)
+- More-than-I-asked-for (chatGPT)
+
+					</script>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
 						### Prompt strategies
 
 - By demonstration (N-shot)
 - Direct:<br> - `Translate French to English`
 - By Proxy<br> - `Answer this question as Mahatma Gandhi`
 - In natural context<br> - `Life is good, or as they say in Italy:`
-- Constraining answer space:<br> - `Translate to French. English: "Hello!" French: "`
+- Constraining answer space and syntax:<br> - `Translate to French. English: "Hello!" French: "`
 
 In general: setting the the same location as starting position in context-space.
 					</script>
@@ -282,13 +300,46 @@ Serialize reasoning and prevent rationalization.
 						
 						- [Reinforcement Learning from Human Feedback (human alignment)](https://huggingface.co/blog/rlhf)
 						- Multi-modality
-						- External connections ([LlamaIndex]https://gpt-index.readthedocs.io/en/latest/index.html))
-						- Plug-in integration | Tool usage
-						- [(Self)-Engineering](https://arxiv.org/abs/2303.17580), [autoGPT](https://github.com/Torantulino/Auto-GPT#-installation)
-					
+						- External connections, Plug-in integration, Tool usage
+						
 					</script>
 				</section>
 
+				<section data-markdown>
+					<script type="text/template">
+						### So....
+						- [GPT4all run local models testbed](https://gpt4all.io/)
+						- [AutoGPT agents](https://auto-gpt.ai/)
+						- [AgentGPT agents](https://agentgpt.reworkd.ai/)
+						- [LangChain framework](https://python.langchain.com/docs/get_started/introduction)
+						- [LangChain explainer video](https://youtu.be/aywZrzNaKjs?si=DZM1Y3ORchFMHh7X)
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						### LangChain overview
+						![Image](https://daxg39y63pxwu.cloudfront.net/images/blog/langchain/LangChain.webp)
+						
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						### LangChain overview
+						![Image](https://community.intersystems.com/sites/default/files/inline/images/images/image(6597).png)
+						
+					</script>
+				</section>
+
+				<section data-markdown>
+					<script type="text/template">
+						### StreamLit
+						![Image](https://global.discourse-cdn.com/business7/uploads/streamlit/original/3X/4/a/4af3711af2abe5b9d4eae4ee914951884825d14c.jpeg)
+						
+					</script>
+				</section>
+	
 				<section data-markdown>
 					<script type="text/template">
 						### So....
